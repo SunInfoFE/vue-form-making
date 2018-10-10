@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import 'normalize.css/normalize.css'
 import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/regular/keyboard'
 import 'vue-awesome/icons/regular/trash-alt'

@@ -88,7 +88,7 @@ export default function (data) {
       <fm-generate-form :data="jsonData" :remote="remoteFuncs" :value="editData" ref="generateForm">
         ${blankTemplate}
       </fm-generate-form>
-      <el-button type="primary" @click="handleSubmit">提交</el-button>
+      <s-button type="primary" @click="handleSubmit">提交</s-button>
     </div>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>

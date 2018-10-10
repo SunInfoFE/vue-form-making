@@ -1,6 +1,6 @@
 <template>
   <div class="widget-form-container">
-    <el-form :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
+    <s-form :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
       
       <draggable class="widget-form-list" 
         
@@ -13,14 +13,14 @@
         <template v-for="(element, index) in data.list">
           <template v-if="element.type == 'grid'">
             <div v-if="element && element.key"  class="widget-grid-container data-grid" :key="element.key" style="position: relative;">
-              <el-row class="widget-grid "
+              <s-row class="widget-grid "
                 type="flex"
                 :class="{active: selectWidget.key == element.key}"
                 :gutter="element.options.gutter ? element.options.gutter : 0"
                 :justify="element.options.justify"
                 :align="element.options.align"
                 @click.native="handleSelectWidget(index)">
-                <el-col  v-for="(col, colIndex) in element.columns" :key="colIndex" :span="col.span ? col.span : 0">
+                <s-col  v-for="(col, colIndex) in element.columns" :key="colIndex" :span="col.span ? col.span : 0">
                   <div style="border: 1px dashed #999;">
                     <draggable
                       class="widget-form-list" 
@@ -41,12 +41,12 @@
                         :data="col"></widget-form-item>
                     </draggable>
                   </div>
-                </el-col>
+                </s-col>
                 
-              </el-row>
-              <el-button title="删除" style="bottom: -20px;" @click.stop="handleWidgetDelete(index)" class="widget-action-delete" v-if="selectWidget.key == element.key" circle plain type="danger">
+              </s-row>
+              <s-button title="删除" style="bottom: -20px;" @click.stop="handleWidgetDelete(index)" class="widget-action-delete" v-if="selectWidget.key == element.key" circle plain type="danger">
                 <icon name="regular/trash-alt" style="width: 12px;height: 12px;"></icon>
-              </el-button>
+              </s-button>
             </div>
           </template>
           <template v-else>
@@ -55,7 +55,7 @@
         </template>
             
       </draggable>
-    </el-form>
+    </s-form>
   </div>
 </template>
 

@@ -1,126 +1,119 @@
 <template>
-  <el-container>
-    <el-aside style="wdith: 250px;">
+  <section class="s-container">
+        <aside class="s-aside" style="width: 300px;">
+          <div class="components-list">
+            <div class="widget-cate">基础字段</div>
+            <draggable element="ul" :list="basicComponents" 
+              :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
+              @end="handleMoveEnd"
+              @start="handleMoveStart"
+              :move="handleMove"
+            >
+              <li class="form-edit-widget-label" v-for="(item, index) in basicComponents" :key="index">
+                <a>
+                  <icon class="icon" :name="item.icon"></icon>
+                  <span>{{item.name}}</span>
+                </a>
+              </li>
+            </draggable>
 
-      <div class="components-list">
-        <div class="widget-cate">基础字段</div>
-        <draggable element="ul" :list="basicComponents" 
-          :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
-          @end="handleMoveEnd"
-          @start="handleMoveStart"
-          :move="handleMove"
+            <div class="widget-cate">高级字段</div>
+            <draggable element="ul" :list="advanceComponents" 
+              :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
+              @end="handleMoveEnd"
+              @start="handleMoveStart"
+              :move="handleMove"
+            >
+              
+              <li class="form-edit-widget-label" v-for="(item, index) in advanceComponents" :key="index">
+                <a>
+                  <icon class="icon" :name="item.icon"></icon>
+                  <span>{{item.name}}</span>
+                </a>
+              </li>
+            </draggable>
+            
+            <div class="widget-cate">布局字段</div>
+            <draggable element="ul" :list="layoutComponents" 
+              :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
+              @end="handleMoveEnd"
+              @start="handleMoveStart"
+              :move="handleMove"
+            >
+              
+              <li class="form-edit-widget-label data-grid" v-for="(item, index) in layoutComponents" :key="index">
+                <a>
+                  <icon class="icon" :name="item.icon"></icon>
+                  <span>{{item.name}}</span>
+                </a>
+              </li>
+            </draggable>
+          </div>
+        </aside>
+        <section class="s-container center-container is-vertical">
+            <header class="s-header btn-bar" style="height: 45px;">
+              <s-button type="text" @click="handleGoGithub">GitHub</s-button>
+              <s-button type="text" icon="eye" @click="handlePreview">预览</s-button>
+              <s-button type="text" icon="info" @click="handleGenerateJson">生成JSON</s-button>
+              <s-button type="text" icon="order-track" @click="handleGenerateCode">生成代码</s-button>
+            </header>
+            <main class="s-main">
+              <widget-form ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect"></widget-form>
+            </main>
+        </section>
+        <aside class="s-aside widget-config-container" style="width: 300px;">
+            <section class="s-container">
+            <header class="s-header" height="45px">
+              <div class="config-tab" :class="{active: configTab=='widget'}" @click="handleConfigSelect('widget')">字段属性</div>
+              <div class="config-tab" :class="{active: configTab=='form'}" @click="handleConfigSelect('form')">表单属性</div>
+            </header>
+            <main class="s-main config-content">
+              <widget-config v-show="configTab=='widget'" :data="widgetFormSelect"></widget-config>
+              <form-config v-show="configTab=='form'" :data="widgetForm.config"></form-config>
+            </main>
+          </section>
+        </aside>
+        <cus-dialog
+          :visible="previewVisible"
+          @on-close="previewVisible = false"
+          ref="widgetPreview"
+          @on-submit="handleTest"
+          width="1000px"
         >
-          
-          <li class="form-edit-widget-label" v-for="(item, index) in basicComponents" :key="index">
-            <a>
-              <icon class="icon" :name="item.icon"></icon>
-              <span>{{item.name}}</span>
-            </a>
-          </li>
-        </draggable>
+          <generate-form :data="widgetForm" :remote="remoteFuncs" :value="widgetModels" ref="generateForm">
 
-        <div class="widget-cate">高级字段</div>
-        <draggable element="ul" :list="advanceComponents" 
-          :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
-          @end="handleMoveEnd"
-          @start="handleMoveStart"
-          :move="handleMove"
+            <template slot="blank" slot-scope="scope">
+              宽度：<s-input v-model="scope.model.blank.width" style="width: 100px"></s-input>
+              高度：<s-input v-model="scope.model.blank.height" style="width: 100px"></s-input>
+            </template>
+          </generate-form>
+        </cus-dialog>
+
+        <cus-dialog
+          :visible="jsonVisible"
+          @on-close="jsonVisible = false"
+          ref="jsonPreview"
+          width="800px"
+          form
         >
+          <div id="jsoneditor" style="height: 400px;width: 100%;">{{jsonTemplate}}</div>
           
-          <li class="form-edit-widget-label" v-for="(item, index) in advanceComponents" :key="index">
-            <a>
-              <icon class="icon" :name="item.icon"></icon>
-              <span>{{item.name}}</span>
-            </a>
-          </li>
-        </draggable>
-        
-        <div class="widget-cate">布局字段</div>
-        <draggable element="ul" :list="layoutComponents" 
-          :options="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
-          @end="handleMoveEnd"
-          @start="handleMoveStart"
-          :move="handleMove"
+          <template slot="action">
+            <s-button id="copybtn" data-clipboard-target=".ace_text-input">双击复制</s-button>
+          </template>
+        </cus-dialog>
+
+        <cus-dialog
+          :visible="codeVisible"
+          @on-close="codeVisible = false"
+          ref="codePreview"
+          width="800px"
+          form
+          :action="false"
         >
-          
-          <li class="form-edit-widget-label data-grid" v-for="(item, index) in layoutComponents" :key="index">
-            <a>
-              <icon class="icon" :name="item.icon"></icon>
-              <span>{{item.name}}</span>
-            </a>
-          </li>
-        </draggable>
-      </div>
-      
-    </el-aside>
-    <el-container class="center-container" direction="vertical">
-      <el-header class="btn-bar" style="height: 45px;">
-        <el-button type="text" size="medium" @click="handleGoGithub">GitHub</el-button>
-        <el-button type="text" size="medium" icon="el-icon-view" @click="handlePreview">预览</el-button>
-        <el-button type="text" size="medium" icon="el-icon-tickets" @click="handleGenerateJson">生成JSON</el-button>
-        <el-button type="text" size="medium" icon="el-icon-document" @click="handleGenerateCode">生成代码</el-button>
-      </el-header>
-      <el-main>
-        
-        <widget-form ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect"></widget-form>
-      </el-main>
-    </el-container>
-    
-    <el-aside class="widget-config-container">
-      <el-container>
-        <el-header height="45px">
-          <div class="config-tab" :class="{active: configTab=='widget'}" @click="handleConfigSelect('widget')">字段属性</div>
-          <div class="config-tab" :class="{active: configTab=='form'}" @click="handleConfigSelect('form')">表单属性</div>
-        </el-header>
-        <el-main class="config-content">
-          <widget-config v-show="configTab=='widget'" :data="widgetFormSelect"></widget-config>
-          <form-config v-show="configTab=='form'" :data="widgetForm.config"></form-config>
-        </el-main>
-      </el-container>
-      
-    </el-aside>
-
-    <cus-dialog
-      :visible="previewVisible"
-      @on-close="previewVisible = false"
-      ref="widgetPreview"
-      @on-submit="handleTest"
-      width="1000px"
-    >
-      <generate-form :data="widgetForm" :remote="remoteFuncs" :value="widgetModels" ref="generateForm">
-
-        <template slot="blank" slot-scope="scope">
-          宽度：<el-input v-model="scope.model.blank.width" style="width: 100px"></el-input>
-          高度：<el-input v-model="scope.model.blank.height" style="width: 100px"></el-input>
-        </template>
-      </generate-form>
-    </cus-dialog>
-
-    <cus-dialog
-      :visible="jsonVisible"
-      @on-close="jsonVisible = false"
-      ref="jsonPreview"
-      width="800px"
-      form
-    >
-      <div id="jsoneditor" style="height: 400px;width: 100%;">{{jsonTemplate}}</div>
-      
-      <template slot="action">
-        <el-button id="copybtn" data-clipboard-target=".ace_text-input">双击复制</el-button>
-      </template>
-    </cus-dialog>
-
-    <cus-dialog
-      :visible="codeVisible"
-      @on-close="codeVisible = false"
-      ref="codePreview"
-      width="800px"
-      form
-      :action="false"
-    >
-      <div id="codeeditor" style="height: 500px; width: 100%;">{{htmlTemplate}}</div>
-    </cus-dialog>
-  </el-container>
+          <div id="codeeditor" style="height: 500px; width: 100%;">{{htmlTemplate}}</div>
+        </cus-dialog>
+  </section>
 </template>
 
 <script>
@@ -202,7 +195,8 @@ export default {
       window.location.href = 'https://github.com/GavinZhuLei/vue-form-making'
     },
     handleConfigSelect (value) {
-      this.configTab = value
+      this.configTab = value;
+      alert(this.configTab);
     },
     handleMoveEnd (evt) {
       console.log('end', evt)
@@ -214,7 +208,7 @@ export default {
       return true
     },
     handlePreview () {
-      this.previewVisible = true
+      this.previewVisible = true;
     },
     handleTest () {
       this.$refs.generateForm.getData().then(data => {

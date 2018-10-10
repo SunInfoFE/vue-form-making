@@ -29,7 +29,7 @@ $primary-background-color: #ecf5ff;
     text-align: right;
   }
 
-  .el-main{
+  .s-main{
     padding: 0;
     position: relative;
   }
@@ -205,7 +205,7 @@ $primary-background-color: #ecf5ff;
 .widget-config-container{
   position: relative;
 
-  .el-header{
+  .s-header{
     border-bottom: solid 2px #e4e7ed;
     padding: 0 5px;
   }
@@ -229,12 +229,12 @@ $primary-background-color: #ecf5ff;
   .config-content{
     padding: 10px;
 
-    .el-form-item__label{
+    .s-form-item__label{
       padding: 0;
       font-weight: 500;
     }
 
-    .el-form-item {
+    .s-form-item {
       border-bottom: solid 1px #e1e1e1;
       padding-bottom: 10px;
     }

@@ -8,18 +8,47 @@
     <title>表单设计器_快速配置生成表单,数据校验,获取表单数据</title>
     <meta name="description" content="面向中后台的表单设计工具,帮助开发者快速生成表单,表单组件足够丰富">
     <meta name="keywords" content="表单设计,form,vue,快速开发,表单生成,拖拽表单,表单,组件,后台">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/sf-tea.css">
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?dde18227ef42366c4cc9d6fb591beaea";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
   </body>
+  <style>
+    .s-container {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box; /* Firefox */
+        -webkit-box-sizing: border-box; /* Safari */
+        min-width: 0;
+    }
+    .s-header{
+        padding: 0 20px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+    .s-aside{
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+    .s-main{
+        display: block;
+        flex: 1;
+        flex-basis: auto;
+    }
+    .s-aside, .s-main{
+      overflow: auto;
+    }
+    .s-container.is-vertical{
+        flex-direction: column;
+    }
+    .center-container{
+        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+    }
+  </style>
 </html>

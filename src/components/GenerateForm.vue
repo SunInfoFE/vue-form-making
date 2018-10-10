@@ -1,33 +1,31 @@
 <template>
   <div>
-    <el-form ref="generateForm" :model="models" :rules="rules" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
+    <s-form ref="generateForm" :model="models" :rules="rules" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
       <template v-for="item in data.list">
 
         <template v-if="item.type == 'grid'">
-          <el-row
+          <s-row
             :key="item.key"
             type="flex"
             :gutter="item.options.gutter ? item.options.gutter : 0"
             :justify="item.options.justify"
             :align="item.options.align"
           >
-            <el-col v-for="(col, colIndex) in item.columns" :key="colIndex" :span="col.span">
-              
-
+            <s-col v-for="(col, colIndex) in item.columns" :key="colIndex" :span="col.span">
               <template v-for="citem in col.list" >
-                <el-form-item v-if="citem.type=='blank'" :label="citem.name" :prop="citem.model" :key="citem.key">
+                <s-form-item v-if="citem.type=='blank'" :label="citem.name" :prop="citem.model" :key="citem.key">
                   <slot :name="citem.model" :model="models"></slot>
-                </el-form-item>
+                </s-form-item>
                 <genetate-form-item v-else :key="citem.key" :models.sync="models" :remote="remote" :rules="rules" :widget="citem"></genetate-form-item>
               </template>
-            </el-col>
-          </el-row>
+            </s-col>
+          </s-row>
         </template>
 
         <template v-else-if="item.type == 'blank'">
-          <el-form-item :label="item.name" :prop="item.model" :key="item.key">
+          <s-form-item :label="item.name" :prop="item.model" :key="item.key">
             <slot :name="item.model" :model="models"></slot>
-          </el-form-item>
+          </s-form-item>
         </template>
 
         <template v-else>
@@ -35,7 +33,7 @@
         </template>
         
       </template>
-    </el-form>
+    </s-form>
   </div>
 </template>
 

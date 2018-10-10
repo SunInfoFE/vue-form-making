@@ -1,5 +1,5 @@
 <template>
-  <el-dialog
+  <s-dialog
     class="cus-dialog-container"
     :title="title"
     :visible.sync="dialogVisible"
@@ -16,11 +16,11 @@
     <span v-if="action" slot="footer" class="dialog-footer" v-loading="loading"
       :element-loading-text="loadingText">
       <slot name="action">
-        <el-button @click="close">取消</el-button>
-        <el-button type="primary" @click="submit" >确 定</el-button>
+        <s-button @click="close">取消</s-button>
+        <s-button type="primary" @click="submit" >确 定</s-button>
       </slot>
     </span>
-  </el-dialog>
+  </s-dialog>
 </template>
 
 <script>
@@ -102,7 +102,7 @@ export default {
 
 <style lang="scss">
 .cus-dialog-container{
-  .el-dialog__footer{
+  .s-dialog__footer{
     margin: 0 20px;
     // border-top: 1px dashed #ccc;
     padding: 15px 0 16px;
@@ -120,12 +120,12 @@ export default {
         height: 24px;
       }
 
-      .el-loading-text{
+      .s-loading-text{
         display: inline-block;
         vertical-align: middle;
       }
 
-      .el-loading-spinner{
+      .s-loading-spinner{
         margin-top: -12px;
       }
     }

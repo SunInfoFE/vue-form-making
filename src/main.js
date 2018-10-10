@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import ElementUI from 'element-ui'
+import Sunflower from 'vue-sunflower'
+// import ElementUI from 'element-ui'
 
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 
 // import 'form-making/dist/FormMaking.css'
 // import FormMaking from 'form-making'
@@ -12,7 +13,8 @@ Vue.use(FormMaking)
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI, { size: 'small' })
+// Vue.use(ElementUI, { size: 'small' })
+Vue.use(Sunflower)
 
 new Vue({
   router,

@@ -1,70 +1,70 @@
 <template>
-  <el-form-item :label="widget.name" :prop="widget.model">
+  <s-form-item :label="widget.name" :prop="widget.model">
     <template v-if="widget.type == 'input'" >
-      <el-input 
+      <s-input 
         v-if="widget.options.dataType == 'number' || widget.options.dataType == 'integer' || widget.options.dataType == 'float'"
         :type="widget.options.dataType"
         v-model.number="dataModel"
         :placeholder="widget.options.placeholder"
         :style="{width: widget.options.width}"
-      ></el-input>
-      <el-input 
+      ></s-input>
+      <s-input 
         v-else
         :type="widget.options.dataType"
         v-model="dataModel"
         :placeholder="widget.options.placeholder"
         :style="{width: widget.options.width}"
-      ></el-input>
+      ></s-input>
     </template>
 
     <template v-if="widget.type == 'textarea'">
-      <el-input type="textarea" :rows="5"
+      <s-input type="textarea" :rows="5"
         v-model="dataModel"
         :placeholder="widget.options.placeholder"
         :style="{width: widget.options.width}"
-      ></el-input>
+      ></s-input>
     </template>
 
     <template v-if="widget.type == 'number'">
-      <el-input-number 
+      <s-input-number 
         v-model="widget.options.defaultValue" 
         :style="{width: widget.options.width}"
         :step="widget.options.step"
         controls-position="right"
-      ></el-input-number>
+      ></s-input-number>
     </template>
 
     <template v-if="widget.type == 'radio'">
-      <el-radio-group v-model="dataModel"
+      <s-radio-group v-model="dataModel"
         :style="{width: widget.options.width}"
       >
-        <el-radio
+        <s-radio
           :style="{display: widget.options.inline ? 'inline-block' : 'block'}"
           :label="item.value" v-for="(item, index) in (widget.options.remote ? widget.options.remoteOptions : widget.options.options)" :key="index"
         >
           <template v-if="widget.options.remote">{{item.label}}</template>
           <template v-else>{{widget.options.showLabel ? item.label : item.value}}</template>
-        </el-radio>
-      </el-radio-group>
+        </s-radio>
+      </s-radio-group>
     </template>
 
     <template v-if="widget.type == 'checkbox'">
-      <el-checkbox-group v-model="dataModel"
+      <s-checkbox-group v-model="dataModel"
         :style="{width: widget.options.width}"
       >
-        <el-checkbox
+        <s-checkbox
           
           :style="{display: widget.options.inline ? 'inline-block' : 'block'}"
           :label="item.value" v-for="(item, index) in (widget.options.remote ? widget.options.remoteOptions : widget.options.options)" :key="index"
         >
           <template v-if="widget.options.remote">{{item.label}}</template>
           <template v-else>{{widget.options.showLabel ? item.label : item.value}}</template>
-        </el-checkbox>
-      </el-checkbox-group>
+        </s-checkbox>
+      </s-checkbox-group>
     </template>
 
     <template v-if="widget.type == 'time'">
-      <el-time-picker 
+      <s-time-picker 
         v-model="dataModel"
         :is-range="widget.options.isRange"
         :placeholder="widget.options.placeholder"
@@ -78,11 +78,11 @@
         :value-format="widget.options.format"
         :style="{width: widget.options.width}"
       >
-      </el-time-picker>
+      </s-time-picker>
     </template>
 
     <template v-if="widget.type=='date'">
-      <el-date-picker
+      <s-date-picker
         v-model="dataModel"
         :type="widget.options.type"
         :placeholder="widget.options.placeholder"
@@ -96,27 +96,27 @@
         :format="widget.options.format"
         :style="{width: widget.options.width}"
       >
-      </el-date-picker>
+      </s-date-picker>
     </template>
 
     <template v-if="widget.type =='rate'">
-      <el-rate v-model="dataModel"
+      <s-rate v-model="dataModel"
         :max="widget.options.max"
         :disabled="widget.options.disabled"
         :allow-half="widget.options.allowHalf"
-      ></el-rate>
+      ></s-rate>
     </template>
 
     <template v-if="widget.type == 'color'">
-      <el-color-picker 
+      <s-color-picker 
         v-model="dataModel"
         :disabled="widget.options.disabled"
         :show-alpha="widget.options.showAlpha"
-      ></el-color-picker>
+      ></s-color-picker>
     </template>
 
     <template v-if="widget.type == 'select'">
-      <el-select
+      <s-select
         v-model="dataModel"
         :disabled="widget.options.disabled"
         :multiple="widget.options.multiple"
@@ -124,20 +124,20 @@
         :placeholder="widget.options.placeholder"
         :style="{width: widget.options.width}"
       >
-        <el-option v-for="item in (widget.options.remote ? widget.options.remoteOptions : widget.options.options)" :key="item.value" :value="item.value" :label="widget.options.showLabel || widget.options.remote?item.label:item.value"></el-option>
-      </el-select>
+        <s-option v-for="item in (widget.options.remote ? widget.options.remoteOptions : widget.options.options)" :key="item.value" :value="item.value" :label="widget.options.showLabel || widget.options.remote?item.label:item.value"></s-option>
+      </s-select>
     </template>
 
     <template v-if="widget.type=='switch'">
-      <el-switch
+      <s-switch
         v-model="dataModel"
         :disabled="widget.options.disabled"
       >
-      </el-switch>
+      </s-switch>
     </template>
 
     <template v-if="widget.type=='slider'">
-      <el-slider 
+      <s-slider 
         v-model="dataModel"
         :min="widget.options.min"
         :max="widget.options.max"
@@ -146,7 +146,7 @@
         :show-input="widget.options.showInput"
         :range="widget.options.range"
         :style="{width: widget.options.width}"
-      ></el-slider>
+      ></s-slider>
     </template>
 
     <template v-if="widget.type=='imgupload'">
@@ -161,7 +161,7 @@
       >
       </fm-upload>
     </template>
-  </el-form-item>
+  </s-form-item>
 </template>
 
 <script>

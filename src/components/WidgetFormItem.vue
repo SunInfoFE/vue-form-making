@@ -1,63 +1,63 @@
 <template>
-  <el-form-item class="widget-view "
+  <s-form-item class="widget-view "
       v-if="element && element.key" 
       :class="{active: selectWidget.key == element.key, 'is_req': element.options.required}"
       :label="element.name"
       @click.native="handleSelectWidget(index)"
     >
         <template v-if="element.type == 'input'">
-          <el-input 
+          <s-input 
             v-model="element.options.defaultValue"
             :style="{width: element.options.width}"
             :placeholder="element.options.placeholder"
-          ></el-input>
+          ></s-input>
         </template>
 
         <template v-if="element.type == 'textarea'">
-          <el-input type="textarea" :rows="5"
+          <s-input type="textarea" :rows="5"
             v-model="element.options.defaultValue"
             :style="{width: element.options.width}"
             :placeholder="element.options.placeholder"
-          ></el-input>
+          ></s-input>
         </template>
 
         <template v-if="element.type == 'number'">
-          <el-input-number 
+          <s-input-number 
             v-model="element.options.defaultValue" 
             :disabled="element.options.disabled"
             :controls-position="element.options.controlsPosition"
             :style="{width: element.options.width}"
-          ></el-input-number>
+          ></s-input-number>
         </template>
 
         <template v-if="element.type == 'radio'">
-          <el-radio-group v-model="element.options.defaultValue"
+          <s-radio-group v-model="element.options.defaultValue"
             :style="{width: element.options.width}"
           >
-            <el-radio  
+            <s-radio  
               :style="{display: element.options.inline ? 'inline-block' : 'block'}"
               :label="item.value" v-for="(item, index) in element.options.options" :key="item.value + index"
             >
               {{element.options.showLabel ? item.label : item.value}}
-            </el-radio>
-          </el-radio-group>
+            </s-radio>
+          </s-radio-group>
         </template>
 
         <template v-if="element.type == 'checkbox'">
-          <el-checkbox-group v-model="element.options.defaultValue"
+          <s-checkbox-group v-model="element.options.defaultValue"
             :style="{width: element.options.width}"
           >
-            <el-checkbox
+            <s-checkbox
               :style="{display: element.options.inline ? 'inline-block' : 'block'}"
               :label="item.value" v-for="(item, index) in element.options.options" :key="item.value + index"
             >
               {{element.options.showLabel ? item.label : item.value}}
-            </el-checkbox>
-          </el-checkbox-group>
+            </s-checkbox>
+          </s-checkbox-group>
         </template>
 
         <template v-if="element.type == 'time'">
-          <el-time-picker 
+          <s-time-picker 
             v-model="element.options.defaultValue"
             :is-range="element.options.isRange"
             :placeholder="element.options.placeholder"
@@ -70,11 +70,11 @@
             :arrowControl="element.options.arrowControl"
             :style="{width: element.options.width}"
           >
-          </el-time-picker>
+          </s-time-picker>
         </template>
 
         <template v-if="element.type == 'date'">
-          <el-date-picker
+          <s-date-picker
             v-model="element.options.defaultValue"
             :type="element.options.type"
             :is-range="element.options.isRange"
@@ -87,27 +87,27 @@
             :clearable="element.options.clearable"
             :style="{width: element.options.width}"  
           >
-          </el-date-picker>
+          </s-date-picker>
         </template>
 
         <template v-if="element.type == 'rate'">
-          <el-rate v-model="element.options.defaultValue"
+          <s-rate v-model="element.options.defaultValue"
             :max="element.options.max"
             :disabled="element.options.disabled"
             :allow-half="element.options.allowHalf"
-          ></el-rate>
+          ></s-rate>
         </template>
 
         <template v-if="element.type == 'color'">
-          <el-color-picker 
+          <s-color-picker 
             v-model="element.options.defaultValue"
             :disabled="element.options.disabled"
             :show-alpha="element.options.showAlpha"
-          ></el-color-picker>
+          ></s-color-picker>
         </template>
 
         <template v-if="element.type == 'select'">
-          <el-select
+          <s-select
             v-model="element.options.defaultValue"
             :disabled="element.options.disabled"
             :multiple="element.options.multiple"
@@ -115,20 +115,20 @@
             :placeholder="element.options.placeholder"
             :style="{width: element.options.width}"
           >
-            <el-option v-for="item in element.options.options" :key="item.value" :value="item.value" :label="element.options.showLabel?item.label:item.value"></el-option>
-          </el-select>
+            <s-option v-for="item in element.options.options" :key="item.value" :value="item.value" :label="element.options.showLabel?item.label:item.value"></s-option>
+          </s-select>
         </template>
 
         <template v-if="element.type=='switch'">
-          <el-switch
+          <s-switch
             v-model="element.options.defaultValue"
             :disabled="element.options.disabled"
           >
-          </el-switch>
+          </s-switch>
         </template>
 
         <template v-if="element.type=='slider'">
-          <el-slider 
+          <s-slider 
             v-model="element.options.defaultValue"
             :min="element.options.min"
             :max="element.options.max"
@@ -137,7 +137,7 @@
             :show-input="element.options.showInput"
             :range="element.options.range"
             :style="{width: element.options.width}"
-          ></el-slider>
+          ></s-slider>
         </template>
 
         <template v-if="element.type=='imgupload'">
@@ -158,14 +158,14 @@
           <div style="height: 50px;color: #999;background: #eee;line-height:50px;text-align:center;">自定义区域</div>
         </template>
 
-        <el-button title="删除" @click.stop="handleWidgetDelete(index)" class="widget-action-delete" v-if="selectWidget.key == element.key" circle plain type="danger">
+        <s-button title="删除" @click.stop="handleWidgetDelete(index)" class="widget-action-delete" v-if="selectWidget.key == element.key" circle plain type="danger">
           <icon name="regular/trash-alt" style="width: 12px;height: 12px;"></icon>
-        </el-button>
-        <el-button title="复制" @click.stop="handleWidgetClone(index)" class="widget-action-clone" v-if="selectWidget.key == element.key" circle plain type="primary">
+        </s-button>
+        <s-button title="复制" @click.stop="handleWidgetClone(index)" class="widget-action-clone" v-if="selectWidget.key == element.key" circle plain type="primary">
           <icon name="regular/clone" style="width: 12px;height: 12px;"></icon>
-        </el-button>
+        </s-button>
         
-    </el-form-item>
+    </s-form-item>
 </template>
 
 <script>

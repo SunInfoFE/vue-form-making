@@ -1,17 +1,17 @@
-.el-container{
+.s-container{
   height: 100% !important;
 }
 
-.el-radio+.el-radio{
+.s-radio+.el-radio{
   margin-left: 0 !important;
 }
-.el-radio{
+.s-radio{
   margin-right: 30px;
   line-height: 32px;
 }
-.el-checkbox+.el-checkbox{
+.s-checkbox+.el-checkbox{
   margin-left: 0 !important;
 }
-.el-checkbox{
+.s-checkbox{
   margin-right: 30px;
 }
