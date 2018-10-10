@@ -107,14 +107,6 @@
       ></s-rate>
     </template>
 
-    <template v-if="widget.type == 'color'">
-      <s-color-picker 
-        v-model="dataModel"
-        :disabled="widget.options.disabled"
-        :show-alpha="widget.options.showAlpha"
-      ></s-color-picker>
-    </template>
-
     <template v-if="widget.type == 'select'">
       <s-select
         v-model="dataModel"

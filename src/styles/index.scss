@@ -27,8 +27,11 @@ $primary-background-color: #ecf5ff;
     font-size: 18px;
     border-bottom: solid 2px #e4e7ed;
     text-align: right;
+    button{
+      margin-left: 5px;
+    }
   }
-
+  
   .s-main{
     padding: 0;
     position: relative;
@@ -112,7 +115,7 @@ $primary-background-color: #ecf5ff;
       border-left: 5px solid transparent;
 
       &.is_req{
-        .el-form-item__label::before{
+        .s-form-item__label::before{
           content: '*';
           color: #f56c6c;
           margin-right: 4px;

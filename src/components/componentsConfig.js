@@ -154,7 +154,7 @@ export const basicComponents = [
       required: false
     }
   },
-  {
+  /*{
     type: 'color',
     name: '颜色选择器',
     icon: 'palette',
@@ -164,7 +164,7 @@ export const basicComponents = [
       showAlpha: false,
       required: false
     }
-  },
+  },*/
   {
     type: 'select',
     name: '下拉选择框',

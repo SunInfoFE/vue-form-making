@@ -130,11 +130,6 @@
         <s-input v-if="data.type=='input'" v-model="data.options.defaultValue"></s-input>
         <s-rate v-if="data.type == 'rate'" style="display:inline-block;vertical-align: middle;" :max="data.options.max" :allow-half="data.options.allowHalf" v-model="data.options.defaultValue"></s-rate>
         <s-button type="text" v-if="data.type == 'rate'" style="display:inline-block;vertical-align: middle;margin-left: 10px;" @click="data.options.defaultValue=0">清空</s-button>
-        <s-color-picker 
-          v-if="data.type == 'color'"
-          v-model="data.options.defaultValue"
-          :show-alpha="data.options.showAlpha"
-        ></s-color-picker>
         <s-switch v-if="data.type=='switch'" v-model="data.options.defaultValue"></s-switch>
       </s-form-item>
 

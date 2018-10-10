@@ -98,14 +98,6 @@
           ></s-rate>
         </template>
 
-        <template v-if="element.type == 'color'">
-          <s-color-picker 
-            v-model="element.options.defaultValue"
-            :disabled="element.options.disabled"
-            :show-alpha="element.options.showAlpha"
-          ></s-color-picker>
-        </template>
-
         <template v-if="element.type == 'select'">
           <s-select
             v-model="element.options.defaultValue"

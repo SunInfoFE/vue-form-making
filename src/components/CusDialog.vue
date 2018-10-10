@@ -2,7 +2,7 @@
   <s-dialog
     class="cus-dialog-container"
     :title="title"
-    :visible.sync="dialogVisible"
+    v-model="dialogVisible"
     :close-on-click-modal="false"
     center
     :width="width"

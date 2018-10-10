@@ -52,18 +52,18 @@
         </aside>
         <section class="s-container center-container is-vertical">
             <header class="s-header btn-bar" style="height: 45px;">
-              <s-button type="text" @click="handleGoGithub">GitHub</s-button>
-              <s-button type="text" icon="eye" @click="handlePreview">预览</s-button>
-              <s-button type="text" icon="info" @click="handleGenerateJson">生成JSON</s-button>
-              <s-button type="text" icon="order-track" @click="handleGenerateCode">生成代码</s-button>
+              <s-button type="cancel" @click="handleGoGithub">GitHub</s-button>
+              <s-button type="cancel" icon="eye" @click="handlePreview">预览</s-button>
+              <s-button type="cancel" icon="info" @click="handleGenerateJson">生成JSON</s-button>
+              <s-button type="cancel" icon="order-track" @click="handleGenerateCode">生成代码</s-button>
             </header>
             <main class="s-main">
               <widget-form ref="widgetForm" :data="widgetForm" :select.sync="widgetFormSelect"></widget-form>
             </main>
         </section>
         <aside class="s-aside widget-config-container" style="width: 300px;">
-            <section class="s-container">
-            <header class="s-header" height="45px">
+            <section class="s-container is-vertical">
+            <header class="s-header" style="height:45px">
               <div class="config-tab" :class="{active: configTab=='widget'}" @click="handleConfigSelect('widget')">字段属性</div>
               <div class="config-tab" :class="{active: configTab=='form'}" @click="handleConfigSelect('form')">表单属性</div>
             </header>
@@ -196,7 +196,6 @@ export default {
     },
     handleConfigSelect (value) {
       this.configTab = value;
-      alert(this.configTab);
     },
     handleMoveEnd (evt) {
       console.log('end', evt)
