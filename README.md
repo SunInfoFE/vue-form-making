@@ -1,9 +1,5 @@
 # form-making
-基于Vue,ElementUI开发的一款表单设计器，提高表单开发效率的利器，让开发者从枯燥的表单代码编写中解放出来
-
-工具地址：http://tools.xiaoyaoji.cn/form
-
-![](https://user-gold-cdn.xitu.io/2018/9/27/1661a6cd60454273)
+基于Vue,Sunflower开发的一款表单设计器，提高表单开发效率的利器，让开发者从枯燥的表单代码编写中解放出来
 
 ## 特性
 
@@ -17,19 +13,6 @@
 * 提供功能强大的高级组件
 * 支持表单验证
 * 快速获取表单数据
-
-## CDN
-``` html
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/form-making/dist/FormMaking.css">
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/form-making/dist/FormMaking.umd.js"></script>
-```
-
-## Install
-```shell
-npm install form-making -S
-```
 
 ## Quick Start
 ``` javascript
@@ -52,9 +35,6 @@ Vue.component(GenerateForm.name, GenerateForm)
 ```
 
 ## 功能介绍
-
-通过 [在线地址](http://tools.xiaoyaoji.cn/form) 或者拉取代码自己打包到项目生成的JSON，用于表单渲染
-![](https://user-gold-cdn.xitu.io/2018/9/27/1661a50b64f77e5f?w=1580&h=1080&f=png&s=162948)
 
 下面就是加载对应的数据用于展示，假设你已经正确加载组件
 
@@ -107,6 +87,3 @@ new Vue({
     }
 })
 ```
-## 问题交流
-
-QQ群：902048874

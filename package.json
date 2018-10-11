@@ -1,19 +1,19 @@
 {
   "name": "form-making",
-  "description": "基于Vue,ElementUI开发的一款表单设计器，提高表单开发效率的利器，让开发者从枯燥的表单代码编写中解放出来",
+  "description": "基于Vue,Sunflower开发的一款表单设计器，提高表单开发效率的利器，让开发者从枯燥的表单代码编写中解放出来",
   "version": "1.0.0",
-  "author": "GavinZhulei",
+  "author": "SunInfoFE",
   "license": "MIT",
   "keywords": [
     "component",
     "vue",
     "form",
-    "element-ui",
+    "sunflower",
     "auto"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/GavinZhuLei/vue-form-making"
+    "url": "https://github.com/SunInfoFE/vue-form-making"
   },
   "main": "dist/FormMaking.common.js",
   "scripts": {
@@ -27,10 +27,7 @@
     "axios": "^0.18.0",
     "clipboard": "^2.0.1",
     "echarts": "^4.2.0-rc.1",
-    "element-ui": "^2.3.8",
     "jsoneditor": "^5.24.6",
-    "multiparty": "^4.2.1",
-    "normalize.css": "^8.0.0",
     "qiniu": "^7.2.1",
     "viewerjs": "^1.2.0",
     "vue": "^2.5.16",
