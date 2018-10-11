@@ -12,11 +12,6 @@ export default {
 </script>
 
 <style lang="scss">
-*, :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 html,body{
   height: 100%;
 }

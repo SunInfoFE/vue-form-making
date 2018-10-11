@@ -116,7 +116,7 @@ export const basicComponents = [
       startPlaceholder: '',
       endPlaceholder: '',
       isRange: false,
-      arrowControl: true,
+      arrowControl: false,
       format: 'HH:mm:ss',
       required: false,
       width: '',

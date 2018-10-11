@@ -16,8 +16,8 @@
     <span v-if="action" slot="footer" class="dialog-footer" v-loading="loading"
       :element-loading-text="loadingText">
       <slot name="action">
-        <s-button @click="close">取消</s-button>
-        <s-button type="primary" @click="submit" >确 定</s-button>
+        <s-button @click="submit" >确 定</s-button>
+        <s-button type="primary"  @click="close">取消</s-button>
       </slot>
     </span>
   </s-dialog>
